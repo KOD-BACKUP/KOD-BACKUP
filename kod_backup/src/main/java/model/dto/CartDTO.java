@@ -9,7 +9,16 @@ public class CartDTO {
 	private String productName;
 	private int productPrice;
 	private String productImg;
+	private int sumProductPrice;
+	private String searchCondition;
 	
+	
+	public int getSumProductPrice() {
+		return sumProductPrice;
+	}
+	public void setSumProductPrice(int sumProductPrice) {
+		this.sumProductPrice = sumProductPrice;
+	}
 	public String getProductName() {
 		return productName;
 	}
@@ -52,12 +61,20 @@ public class CartDTO {
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
+	
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
 	@Override
 	public String toString() {
 		return "CartDTO [cartID=" + cartID + ", cartProductCnt=" + cartProductCnt + ", memberID=" + memberID
 				+ ", productID=" + productID + ", productName=" + productName + ", productPrice=" + productPrice
-				+ ", productImg=" + productImg + "]";
+				+ ", productImg=" + productImg + ", sumProductPrice=" + sumProductPrice + "]";
 	}
+	
 	
 	
 }

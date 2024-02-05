@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import model.dto.MemberDTO;
+import model.dto.AddressDTO;
 import model.dto.OrderListDTO;
 import model.util.JDBCUtil;
 
@@ -13,23 +14,44 @@ public class OrderListDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	
-	private static final String SELECTALL="";
-	private static final String SELECTONE="SELECT NVL(MAX(ORDERLIST_ID),1) AS MAX_ID FROM ORDERLIST";
+	private static final String SELECTALL="SELECT * FROM ORDERLIST WHERE MEMBER_ID=? ORDER BY ORDERLIST_ID DESC";
+	private static final String SELECTONE="SELECT NVL(MAX(ORDERLIST_ID),0) AS MAX_ID FROM ORDERLIST WHERE MEMBER_ID=?";
 	private static final String INSERT="INSERT INTO ORDERLIST "
 			+ " (ORDERLIST_ID, MEMBER_ID, ORDERLIST_DATE) "
 			+ " VALUES((SELECT NVL(MAX(ORDERLIST_ID),0)+1 FROM ORDERLIST), ?, SYSDATE)";
 	private static final String UPDATE="";
 	private static final String DELETE="";
 	
-	public void selectAll() {
-		
+	public ArrayList<OrderListDTO> selectAll(OrderListDTO oDTO) {
+		ArrayList<OrderListDTO> datas = new ArrayList<OrderListDTO>();	
+		conn = JDBCUtil.connect();
+		try {
+			pstmt = conn.prepareStatement(SELECTALL);
+			pstmt.setString(1, oDTO.getMemberID());			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				OrderListDTO data = new OrderListDTO();
+				data.setOdListID(rs.getInt("ORDERLIST_ID"));
+				data.setOdListDate(rs.getDate("ORDERLIST_DATE"));
+				datas.add(data);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.disconnect(pstmt, conn);
+		}
+		return datas;
 	}
+	
 	public OrderListDTO selectOne(OrderListDTO oDTO) {
 		OrderListDTO data=null;
 
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(SELECTONE);
+			pstmt.setString(1, oDTO.getMemberID());
 			ResultSet rs=pstmt.executeQuery();
 
 			if(rs.next()) {

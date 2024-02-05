@@ -7,6 +7,14 @@ public class OrderListDTO {
 	private String memberID;
 	private Date odListDate;
 	
+	private int cnt;
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getOdListID() {
 		return odListID;
 	}
@@ -24,6 +32,10 @@ public class OrderListDTO {
 	}
 	public void setOdListDate(Date odListDate) {
 		this.odListDate = odListDate;
+	}
+	@Override
+	public String toString() {
+		return "OrderListDTO [odListID=" + odListID + ", memberID=" + memberID + ", odListDate=" + odListDate + "]";
 	}
 	
 }

@@ -34,8 +34,12 @@ public class JDBCUtil {
 	public static void disconnect(PreparedStatement pstmt, Connection conn) {
 		try {
 			// 4. 연결 해제
+			if(pstmt!=null) {
 			pstmt.close();
+			}
+			if(conn!=null) {
 			conn.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

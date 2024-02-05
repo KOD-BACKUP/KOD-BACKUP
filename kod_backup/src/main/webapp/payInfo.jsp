@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="model.dto.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -112,25 +113,6 @@
 						<!-- /Billing Details -->
 
 						<!-- Billing Details -->
-						<%-- <div class="billing-details" style="display: block;">
-							<div class="section-title">
-								<h3 class="title">상품 정보</h3>
-							</div>
-							<div style="border: solid;">
-								<div class="form-group" style="width: 200px; height: 200px; display: flex; flex-direction: row;">
-									<img src="<%=productDTO.getProductImg()%>" style="width: 100%">
-								</div>
-								<div class="form-group" style="display: flex;" >
-									<input class="input" type="text" name="productName" placeholder="상품이름" value="<%=productDTO.getProductName()%>" disabled>
-								</div>
-								<div class="form-group" style="display: flex;">
-									<input class="input" type="text" name="productPrice" placeholder="상품가격" value="<%=productDTO.getProductPrice()%>" disabled>
-								</div>
-								<div class="form-group" style="display: flex;">
-									<input class="input" type="text" name="OrderContentCnt" placeholder="주문개수" value="<%=productDTO.getProductCnt()%>" disabled>
-								</div>
-							</div>
-						</div> --%>
 						<br><br>
 						<div class="billing-details">
 						<table style="width: 100%; text-align: center;">
@@ -168,14 +150,14 @@
 									<div><strong>TOTAL</strong></div>
 								</div>
 								<div class="order-products">
-								<%for(CartDTO cData:cDatas){ %>
+								<%for(int i=0; i<cDatas.size(); i++){ %>
 									<div class="order-col">
-										<div><%=cData.getProductName()%></div>
-										<div style="text-align: right;"><%=cData.getProductPrice()%>원</div>
-										<input type="hidden" name="productID" value="<%=cData.getProductID()%>">
-										<input type="hidden" name="productName" value="<%=cData.getProductName()%>">
-										<input type="hidden" name="productCnt" value="<%=cData.getCartProductCnt()%>">
-										<input type="hidden" name="productPrice" value="<%=cData.getProductPrice()%>">
+										<div><%=cDatas.get(i).getProductName()%></div>
+										<div style="text-align: right;"><%=cDatas.get(i).getProductPrice()%>원</div>
+										<input type="hidden" name="productID" value="<%=cDatas.get(i).getProductID()%>">
+										<input type="hidden" name="productName" value="<%=cDatas.get(i).getProductName()%>">
+										<input type="hidden" name="productCnt" value="<%=cDatas.get(i).getCartProductCnt()%>">
+										<input type="hidden" name="productPrice" value="<%=cDatas.get(i).getProductPrice()%>">
 									</div>
 									<%} %>
 									<!-- <div class="order-col">
@@ -193,15 +175,16 @@
 									int total=0;
 									for(CartDTO cData : cDatas){
 										total += cData.getProductPrice()*cData.getCartProductCnt(); 
-									}
+									
 									%>
-									<div style="text-align: right;"><strong class="order-total" ><%=total%>원</strong></div>
+									<div style="text-align: right;"><strong class="order-total" ><%=cData.getProductPrice()%>원</strong></div>
 									<input type="hidden" name="totalPrice" value="<%=total%>">
+									<%} %>
 								</div>
 							</div>
 							<div class="payment-method" style="align-items: center; display: flex;">
 								<div style="display: inline-block; "><strong>결제수단</strong></div>
-							   	<select class="input-select" id="pg-select" style="display: inline-block; position: absolute; right: 4%; ">
+							   	<select class="input-select" id="pgSelect" name="pg" style="display: inline-block; position: absolute; right: 4%; ">
 								 	<option value="kakaopay">카카오페이</option>
 								 	<option value="tosspay">토스페이</option>
 								 	<option value="html5_inicis">이니시스</option>
