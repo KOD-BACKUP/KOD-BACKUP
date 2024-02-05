@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +17,9 @@
 		
 <div class="container">
   <!-- Heading -->
-  <h1><img src="img/shopimg.png"></h1>
+  <h1><a href="main.do"><img src="img/shopimg.png" style="height: 40%; width: 40%;"></a></h1>
   
   <!-- Links -->
-  <ul class="links">
-    <li>
-      <a href="#" id="signin"></a>
-    </li>
-  </ul>
   
   <!-- Form -->
   <form  action="login.do" method="post">

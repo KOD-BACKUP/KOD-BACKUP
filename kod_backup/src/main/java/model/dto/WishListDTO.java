@@ -5,17 +5,32 @@ import java.sql.Time;
 public class WishListDTO {
 	private int wishListID;
 	private int isWished;
+	private int wishListCnt;
+	private int wishTotalCnt;
 	private Time wishListAddTime;
 	private String memberID;
 	private String memberGender;
+	private int memberAge;
+	private int memberMinAge;
+	private int memberMaxAge;
 	private int productID;
 	private String productBrand;
 	private String productName;
 	private String productCategory;
+	private String productInfo;
 	private String productImg;
 	private int productPrice;
+	private int productCnt;
+	private int productStock;
 	private String searchCondition;
+	private String SearchKeyword;
 	
+	public String getSearchKeyword() {
+		return SearchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		SearchKeyword = searchKeyword;
+	}
 	public int getWishListID() {
 		return wishListID;
 	}
@@ -28,6 +43,18 @@ public class WishListDTO {
 	}
 	public void setIsWished(int isWished) {
 		this.isWished = isWished;
+	}
+	public int getWishListCnt() {
+		return wishListCnt;
+	}
+	public void setWishListCnt(int wishListCnt) {
+		this.wishListCnt = wishListCnt;
+	}
+	public int getWishTotalCnt() {
+		return wishTotalCnt;
+	}
+	public void setWishTotalCnt(int wishTotalCnt) {
+		this.wishTotalCnt = wishTotalCnt;
 	}
 	public Time getWishListAddTime() {
 		return wishListAddTime;
@@ -46,6 +73,24 @@ public class WishListDTO {
 	}
 	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
+	}
+	public int getMemberAge() {
+		return memberAge;
+	}
+	public void setMemberAge(int memberAge) {
+		this.memberAge = memberAge;
+	}
+	public int getMemberMinAge() {
+		return memberMinAge;
+	}
+	public void setMemberMinAge(int memberMinAge) {
+		this.memberMinAge = memberMinAge;
+	}
+	public int getMemberMaxAge() {
+		return memberMaxAge;
+	}
+	public void setMemberMaxAge(int memberMaxAge) {
+		this.memberMaxAge = memberMaxAge;
 	}
 	public int getProductID() {
 		return productID;
@@ -71,6 +116,12 @@ public class WishListDTO {
 	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
 	}
+	public String getProductInfo() {
+		return productInfo;
+	}
+	public void setProductInfo(String productInfo) {
+		this.productInfo = productInfo;
+	}
 	public String getProductImg() {
 		return productImg;
 	}
@@ -83,13 +134,24 @@ public class WishListDTO {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
+	public int getProductCnt() {
+		return productCnt;
+	}
+	public void setProductCnt(int productCnt) {
+		this.productCnt = productCnt;
+	}
+	public int getProductStock() {
+		return productStock;
+	}
+	public void setProductStock(int productStock) {
+		this.productStock = productStock;
+	}
 	public String getSearchCondition() {
 		return searchCondition;
 	}
 	public void setSearchCondition(String searchCondition) {
 		this.searchCondition = searchCondition;
 	}
-	
 	
 	
 }
